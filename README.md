@@ -1,6 +1,6 @@
-# Vue Store-Front Templete
+# Vue Store-Front Template
 
-> An E-commerce templete made with bootstrap4
+> An E-commerce template made with bootstrap4
 > and Vue/Vuex/Vue-router.
 
 
@@ -8,7 +8,7 @@
   <img src="https://i.imgur.com/LMRIylM.png">
 </p>
 
-## Development/Producation Setup
+## Development/Production Setup
 
 ``` bash
 # Open the project folder
