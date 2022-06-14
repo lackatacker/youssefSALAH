@@ -6,7 +6,6 @@ const Products = () => import('@/views/Products.vue');
 const Contact = () => import('@/views/Contact.vue');
 const Info = () => import('@/views/Info.vue');
 const Order = () => import('@/views/Order.vue');
-const Payment = () => import('@/views/Payment.vue');
 Vue.use(Router)
 
 export default new Router({
@@ -35,11 +34,6 @@ export default new Router({
       name: 'Order',
       component: Order
     },
-    {
-      path: '/payment/:method',
-      name: 'Payment',
-      component: Payment
-    }
   ],
   mode: 'history'
 })
