@@ -2,18 +2,16 @@
   <div class="container-flex">
     <nav class="navbar navbar-light">
       <div class="dropdown d-xl-none d-lg-none mr-auto">
-        <img src="https://png.icons8.com/windows/32/000000/menu.png" data-toggle="dropdown" data-target="#navd" aria-haspopup="true" aria-expanded="false">
+        <img src="" data-toggle="dropdown" data-target="#navd" aria-haspopup="true" aria-expanded="false">
         <div class="dropdown-menu hb" aria-labelledby="navd">
           <router-link class="dropdown-item" to="/">Home</router-link>
           <router-link class="dropdown-item" to="/products">Products</router-link>
           <router-link class="dropdown-item" to="/contact">Contact us</router-link>
         </div>
       </div>
-      <!--Logo-->
       <a class="navbar-brand py-0 pl-5">
           <img src="@/assets/fi-logo.svg" width="50" height="50">
       </a>
-      <!--Header navigation-->
       <span class="navbar-item bc d-none d-xl-block d-lg-block py-0">
         <router-link class="pl-5" to="/">Home</router-link>
         <router-link class="px-5" to="/products">Products</router-link>
