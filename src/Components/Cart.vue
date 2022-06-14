@@ -78,9 +78,9 @@ export default {
       }
     },
     saveCartData() {
-      if (localStorage.getItem('cartItems'))
-      localStorage.clear()
-      localStorage.setItem('cartItems', JSON.stringify(this.$store.state.cartItems))
+      if (sessionStorage.getItem('cartItems'))
+      sessionStorage.clear()
+      sessionStorage.setItem('cartItems', JSON.stringify(this.$store.state.cartItems))
     },
     removeThing(id){
       this.$store.commit('outCart',id)

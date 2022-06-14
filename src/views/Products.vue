@@ -14,7 +14,7 @@ export default {
     Breadc, Grid
   },
   created() {
-    var itemsStr = localStorage.getItem('cartItems')
+    var itemsStr = sessionStorage.getItem('cartItems')
     if (itemsStr) {
       this.$store.state.cartItems = []
       var items = JSON.parse(itemsStr)
