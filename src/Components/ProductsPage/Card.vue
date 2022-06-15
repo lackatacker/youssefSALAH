@@ -10,7 +10,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ item.title }}</h5>
-              <p class="card-text">${{ item.price }}</p>
+              <p class="card-text">{{ item.price }}  {{currency}}</p>
             </div>
           </div>
       </div>
@@ -21,6 +21,11 @@
 
 <script>
 export default {
+    data() {
+    return {
+      currency:process.env.VUE_APP_currency
+    }
+  },
   props: ['CardArray'],
   name: 'Card',
   methods: {

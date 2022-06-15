@@ -9,7 +9,7 @@
         <div class="info pt-xl-0 pt-lg-0 pt-5">
           <span class="float-left pr-3">★★★★★</span><h6 style="width:190px;">3 reviews</h6>
           <h1 class="font-weight-bold text-uppercase pt-3">{{ it.title }}</h1>
-          <h4>${{ it.price }}</h4>
+          <h4>{{ it.price }}  {{currency}}</h4>
           <br><br><br>
           <div class="control number text-center">
             <button class="decrement-button" @click="dec" style="border-right: 0.2px solid lightgrey;float:left;margin-right: 11px;">−</button>
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       quan: 1,
+      currency: process.env.VUE_APP_currency
     }
   },
   methods:{

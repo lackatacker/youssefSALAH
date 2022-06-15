@@ -18,7 +18,7 @@
             </div>
             <div class="col6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <h4>{{ thing.title }}</h4>
-              <h6>{{ thing.price }}</h6>
+              <h6>{{ thing.price }} {{currency}}</h6>
             </div>
             <div class="col2 col-xl-2 col-lg-2 col-md-2 col-sm-2 pt-4">
               <span class="remove-btn" @click="removeThing(thing.id)">remove</span>
@@ -33,7 +33,7 @@
             <h4>Total</h4>
           </div>
           <div class="flex-column pr-3">
-            <h4>${{ cartPrice }}</h4>
+            <h4>{{ cartPrice }}  {{currency}}</h4>
           </div>
           <router-link to="/Order">
             <button @click="saveCartData" class="btn btn-outline-secondary btn-lg btn-block">
@@ -56,7 +56,8 @@ export default {
     return {
       cClass: 'cart',
       modalClass: 'modal off',
-      savedCartItems: []
+      savedCartItems: [],
+      currency:process.env.VUE_APP_currency
     }
   },
   computed:{

@@ -9,7 +9,7 @@
         <div class="card-body">
           <p class="card-text">
             <label class="blockquote">Amount:</label> {{this.$store.getters.totalPrice}}<br>
-            <label class="blockquote">Currency:</label> MAD<br>
+            <label class="blockquote">Currency:</label> {{currency}}<br>
             <label class="blockquote">Number of Items:</label> {{this.$store.getters.itemsNumber}}
           </p>
         </div>
@@ -55,6 +55,7 @@ export default {
   data(){
     return {
     link:'',
+    currency:process.env.VUE_APP_currency
   }
   },
   components: {
