@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="global">
     <h3 class="text-secondary display-5 text-center my-5">Confirm your purchase!</h3>
     <div class="d-flex justify-content-center pb-3">
       <div class="card">
@@ -21,18 +21,14 @@
       <button type="button" class="btn btn-secondary mr-3" @click="redirect">Proceed to
         payment Redirection</button>
       <button type="button" class="btn btn-success mr-3">Proceed to payment JSON Based</button>
-      <button type="button" class="btn btn-dark mr-3" @click="$router.push('/payment/html')">Proceed to payment HTML
+      <button type="button" class="btn btn-dark mr-3" @click="handleHtml">Proceed to payment HTML
         Display</button>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="container-fluid" role="document" >
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Payment page</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <div class="modal-body">
             <div class="embed-responsive embed-responsive-16by9">
@@ -40,7 +36,6 @@
             </div>  
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -55,7 +50,8 @@ export default {
   data(){
     return {
     link:'',
-    currency:process.env.VUE_APP_currency
+    currency:process.env.VUE_APP_currency,
+    htmlData:''
   }
   },
   components: {
@@ -67,7 +63,12 @@ export default {
   methods: {
     redirect(){
       window.location.href=this.link
-    }
+    },
+    async handleHtml(){
+      await getPayment.getHTML().then(res=>this.htmlData=res.data)
+      document.getElementById('global').innerHTML=this.htmlData
+  },
+
   },
   created() {
     var itemsStr = sessionStorage.getItem('cartItems')
@@ -78,7 +79,7 @@ export default {
         this.$store.commit('inCart', items[i])
       }
     }
-  getPayment.getLink().then((res) =>this.link=res.data)
+  getPayment.getLink().then(res =>this.link=res.data)
   }
 }
 </script>
