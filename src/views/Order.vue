@@ -20,7 +20,7 @@
         payment Iframe</button>
       <button type="button" class="btn btn-secondary mr-3" @click="redirect">Proceed to
         payment Redirection</button>
-      <button type="button" class="btn btn-success mr-3">Proceed to payment JSON Based</button>
+      <button type="button" class="btn btn-success mr-3" @click="$router.push('/payment')">Proceed to payment JSON Based</button>
       <button type="button" class="btn btn-dark mr-3" @click="handleHtml">Proceed to payment HTML
         Display</button>
     </div>
