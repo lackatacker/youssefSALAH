@@ -373,5 +373,5 @@ export default {
 
 <style>
 
-@import "https://js.stripe.com/v3/fingerprinted/css/checkout-app-init-3c13d94e8f943022ba1928ae1ded7070.css"
+@import "./paymentStyle.css";
 </style>
