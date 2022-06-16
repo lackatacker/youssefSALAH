@@ -46,6 +46,8 @@
 <script>
 import Breadc from '@/Components/ProductsPage/Breadc.vue'
 import getPayment from '../services/getPayment'
+import auth from '../services/Authentication'
+import { async } from 'q'
 export default {
   data(){
     return {
@@ -79,6 +81,7 @@ export default {
         this.$store.commit('inCart', items[i])
       }
     }
+  auth.sendOrder().then(console.log('authenticated'))
   getPayment.getLink().then(res =>this.link=res.data)
   }
 }
