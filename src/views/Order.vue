@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
           <p class="card-text">
-            <label class="blockquote">Amount:</label> {{this.$store.getters.totalPrice}}<br>
+            <label class="blockquote">Amount:</label> {{tp}}<br>
             <label class="blockquote">Currency:</label> {{currency}}<br>
             <label class="blockquote">Number of Items:</label> {{this.$store.getters.itemsNumber}}
           </p>
@@ -47,14 +47,13 @@
 import Breadc from '@/Components/ProductsPage/Breadc.vue'
 import getPayment from '../services/getPayment'
 import auth from '../services/Authentication'
-import { async } from 'q'
 export default {
   data(){
     return {
     link:'',
     currency:process.env.VUE_APP_currency,
     htmlData:'',
-    tp:this.$store.getters.totalPrice
+    tp:parseInt(this.$store.getters.totalPrice)
   }
   },
   components: {
@@ -82,6 +81,7 @@ export default {
     }
   auth.sendOrder(this.tp).then(console.log('tp   ',this.tp))
   getPayment.getLink().then(res =>this.link=res.data)
+  console.log(this.tp)
   }
 }
 

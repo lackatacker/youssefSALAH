@@ -135,8 +135,8 @@ export default new Vuex.Store({
     totalPrice(state) { // Cart Component
       if (state.cartItems.length != 0){
         let a=0
-       state.cartItems.forEach(e=>{console.log(e.title,'is repeated ',sessionStorage.getItem(e.id),' times');a+=e.price*parseInt(sessionStorage.getItem(e.id))})
-       return a
+       state.cartItems.forEach(e=>{console.log(e.title,'is repeated ',parseInt(sessionStorage.getItem(e.id)),' times');a+=e.price*parseInt(sessionStorage.getItem(e.id))})
+       return parseInt(a)
       }
     },
     infoLength(state) { // Info Component

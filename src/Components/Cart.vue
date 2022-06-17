@@ -35,10 +35,10 @@
             <h4>Total</h4>
           </div>
           <div class="flex-column pr-3">
-            <h4>{{showTotal}}{{ cartPrice }}  {{currency}}</h4>
+            <h4>{{ cartPrice }}  {{currency}}</h4>
           </div>
           <router-link to="/Order">
-            <button @click="saveCartData" class="btn btn-outline-secondary btn-lg btn-block">
+            <button class="btn btn-outline-secondary btn-lg btn-block">
               Confirm Order!</button>
           </router-link>
         </div>
@@ -83,11 +83,6 @@ export default {
         this.modalClass = 'modal'
       }
     },
-    saveCartData() {
-      if (sessionStorage.getItem('cartItems'))
-      sessionStorage.clear()
-      sessionStorage.setItem('cartItems', JSON.stringify(this.$store.state.cartItems))
-    },
     removeThing(id){
       this.$store.commit('outCart',id)
       sessionStorage.removeItem(id)
@@ -102,9 +97,7 @@ export default {
         data:this.authBody
     }).then((resp)=>{console.log(resp)})
   },
-  showTotal(){
-  console.log('new carptic is: ',cartPrice())}
-
+  
 }
 </script>
 
