@@ -11,56 +11,56 @@ export default new Vuex.Store({
     items: [
       {
         id:0,
-        img: require('@/assets/1.jpg'),
+        img: require('@/assets/t0.jpg'),
         title: 'sofa 243',
         price: 156,
         color: 'yellow',
         type: 'sofa'
       }, {
         id:1,
-        img: require('@/assets/2.jpg'),
+        img: require('@/assets/t1.jpg'),
         title: 'lamp 54',
         price: 756,
         color: 'yellow',
         type: 'lamp'
       }, {
         id:2,
-        img: require('@/assets/3.jpg'),
+        img: require('@/assets/t2.jpg'),
         title: 'fotal 34',
         price: 362,
         color: 'yellow',
         type: 'chair'
       }, {
         id:3,
-        img: require('@/assets/4.jpg'),
+        img: require('@/assets/t3.jpg'),
         title: 'fotal324',
         price: 505,
         color: 'red',
         type: 'chair'
       }, {
         id:4,
-        img: require('@/assets/5.jpg'),
+        img: require('@/assets/t4.jpeg'),
         title: 'sofa-1',
         price: 243,
         color: 'white',
         type: 'sofa'
       }, {
         id:5,
-        img: require('@/assets/6.jpg'),
+        img: require('@/assets/t5.jpg'),
         title: 'Fotal-2',
         price: 44,
         color: 'white',
         type: 'chair'
       }, {
         id:6,
-        img: require('@/assets/7.jpg'),
+        img: require('@/assets/t6.jpg'),
         title: 'Fotal-34',
         price: 505,
         color: 'blue',
         type: 'chair'
       }, {
         id:7,
-        img: require('@/assets/8.jpg'),
+        img: require('@/assets/t7.jpg'),
         title: 'foto-4364',
         price: 432,
         color: 'red',
@@ -68,7 +68,7 @@ export default new Vuex.Store({
       },
       {
         id:8,
-        img: require('@/assets/9.jpg'),
+        img: require('@/assets/t8.jpg'),
         title: 'foto-44',
         price: 390,
         color: 'white',
@@ -76,7 +76,7 @@ export default new Vuex.Store({
       },
       {
         id:9,
-        img: require('@/assets/10.jpg'),
+        img: require('@/assets/t9.jpg'),
         title: 'foto-34',
         price: 756,
         color: 'yellow',
@@ -84,7 +84,7 @@ export default new Vuex.Store({
       },
       {
         id:10,
-        img: require('@/assets/11.jpg'),
+        img: require('@/assets/t10.png'),
         title: 'foto-23',
         price: 44,
         color: 'white',
@@ -92,7 +92,7 @@ export default new Vuex.Store({
       },
       {
         id:11,
-        img: require('@/assets/12.jpg'),
+        img: require('@/assets/t11.png'),
         title: 'foto-4234',
         price: 156,
         color: 'red',
@@ -100,7 +100,7 @@ export default new Vuex.Store({
       },
       {
         id:12,
-        img: require('@/assets/13.jpg'),
+        img: require('@/assets/t12.png'),
         title: 'foto-4234',
         price: 756,
         color: 'blue',
@@ -108,7 +108,7 @@ export default new Vuex.Store({
       },
       {
         id:13,
-        img: require('@/assets/14.jpg'),
+        img: require('@/assets/t13.png'),
         title: 'foto-4234',
         price: 756,
         color: 'white',
@@ -116,7 +116,7 @@ export default new Vuex.Store({
       },
       {
         id:14,
-        img: require('@/assets/table-1.jpg'),
+        img: require('@/assets/t14.png'),
         title: 'table-32',
         price: 756,
         color: 'white',
@@ -126,14 +126,17 @@ export default new Vuex.Store({
   },
   // plugins: [createPersistedState()],
   getters: {
+    async priceMthod() {
+      console.log('Price method');
+    },
     itemsNumber(state){  // Cart Component
       return state.cartItems.length
     },
     totalPrice(state) { // Cart Component
       if (state.cartItems.length != 0){
-       return state.cartItems.reduce((a, b) => {
-         return (b.price == null ) ? a : a + b.price
-       }, 0)
+        let a=0
+       state.cartItems.forEach(e=>{console.log(e.title,'is repeated ',sessionStorage.getItem(e.id),' times');a+=e.price*parseInt(sessionStorage.getItem(e.id))})
+       return a
       }
     },
     infoLength(state) { // Info Component
@@ -143,11 +146,21 @@ export default new Vuex.Store({
     },
     items(state) {
       return state.cartItems;
-    }
+    },
+
   },
   mutations: {
-    inCart(state, n) { // Cart Component
+    addInCart(state, n){
       return state.cartItems.push(n)
+    },
+    inCart(state, n) {
+      if(!sessionStorage.getItem(n.id)){
+      sessionStorage.setItem(n.id,1)
+      return state.cartItems.push(n)
+      }
+      sessionStorage.setItem(n.id,parseInt(sessionStorage.getItem(n.id))+1)
+      state.cartItems.splice(n.id, 1)
+      state.cartItems.push(n)
     },
     outCart(state, n) { // Cart Component
       console.log('-n: ' + JSON.stringify(n))

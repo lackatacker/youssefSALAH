@@ -14,12 +14,10 @@ export default {
     Breadc, Grid
   },
   created() {
-    var itemsStr = sessionStorage.getItem('cartItems')
-    if (itemsStr) {
+    if (sessionStorage.length) {
       this.$store.state.cartItems = []
-      var items = JSON.parse(itemsStr)
-      for (var i = 0; i < items.length; i++) {
-        this.$store.commit('inCart', items[i])
+      for (var i = 0; i < sessionStorage.length; i++) {
+        this.$store.commit('addInCart', this.$store.state.items[i])
       }
     }
   }

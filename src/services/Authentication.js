@@ -1,22 +1,18 @@
 import axios from 'axios'
 
-let totalPrice=0
 export default {
-    async getTotalPrice(){
-        totalPrice= this.$store.getters.totalPrice
-    },
-async sendOrder(){
+    // async getTotalPrice(){
+async sendOrder(a){
     let authBody= {
         'transactionReference':'1234564589',
         'clientIp':'test',
         'currency':'MAD',
-        'transactionAmount':totalPrice,
-          }
+        'transactionAmount': a,
+          };
     await axios({
         method:'post',
         url:process.env.VUE_APP_auth,
         data:authBody
         });
 }
-
 }

@@ -373,5 +373,5 @@ export default {
 
 <style>
 
-@import "../styles/paymentStyle.css";
+@import "./paymentStyle.css";
 </style>

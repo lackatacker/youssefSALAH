@@ -10,7 +10,7 @@
         </div>
       </div>
       <a class="navbar-brand py-0 pl-5">
-          <img src="@/assets/fi-logo.svg" width="50" height="50">
+          <img src="@/assets/s2m.png" width="90" height="50">
       </a>
       <span class="navbar-item bc d-none d-xl-block d-lg-block py-0">
         <router-link class="pl-5" to="/">Home</router-link>

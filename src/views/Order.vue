@@ -32,7 +32,7 @@
           </div>
           <div class="modal-body">
             <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" :src="link" allowfullscreen></iframe>
+            <iframe id="myIframe" class="embed-responsive-item" :src="link" allowfullscreen></iframe>
             </div>  
           </div>
           <div class="modal-footer">
@@ -53,7 +53,8 @@ export default {
     return {
     link:'',
     currency:process.env.VUE_APP_currency,
-    htmlData:''
+    htmlData:'',
+    tp:this.$store.getters.totalPrice
   }
   },
   components: {
@@ -73,16 +74,22 @@ export default {
 
   },
   created() {
-    var itemsStr = sessionStorage.getItem('cartItems')
-    if (itemsStr) {
+    if (sessionStorage.length) {
       this.$store.state.cartItems = []
-      var items = JSON.parse(itemsStr)
-      for (var i = 0; i < items.length; i++) {
-        this.$store.commit('inCart', items[i])
+      for (var i = 0; i < sessionStorage.length; i++) {
+        this.$store.commit('addInCart', this.$store.state.items[i])
       }
     }
-  auth.sendOrder().then(console.log('authenticated'))
+  auth.sendOrder(this.tp).then(console.log('tp   ',this.tp))
   getPayment.getLink().then(res =>this.link=res.data)
   }
 }
+
+  // const iframe = document.getElementById('myIframe');
+  // const cancelBtn = iframe.contentWindow.document.getElementById('annuler');
+  // cancelBtn.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   iframe.remove();
+  // });
+  // window.location.href = orderUrl;
 </script>

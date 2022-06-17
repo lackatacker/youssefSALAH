@@ -53,6 +53,8 @@ export default {
 
 .card img {
   z-index: 1;
+  height: 300px;
+  width: 262px;
 }
 
 .card button {
