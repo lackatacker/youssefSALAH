@@ -73,7 +73,8 @@ export default {
 
   },
   created() {
-    if (sessionStorage.length) {
+    if (sessionStorage.length!=0) {
+      console.log('sessionStorage is:',sessionStorage.length)
       this.$store.state.cartItems = []
       for (var i = 0; i < sessionStorage.length; i++) {
         this.$store.commit('addInCart', this.$store.state.items[i])
@@ -85,11 +86,4 @@ export default {
   }
 }
 
-  // const iframe = document.getElementById('myIframe');
-  // const cancelBtn = iframe.contentWindow.document.getElementById('annuler');
-  // cancelBtn.addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   iframe.remove();
-  // });
-  // window.location.href = orderUrl;
 </script>
