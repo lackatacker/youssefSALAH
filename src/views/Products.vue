@@ -17,7 +17,7 @@ export default {
     if (sessionStorage.length!=0) {
       this.$store.state.cartItems = []
       for (var i = 0; i < sessionStorage.length; i++) {
-        this.$store.commit('addInCart', this.$store.state.items[i])
+        this.$store.commit('addInCartOnly', this.$store.state.items[i])
       }
     }
   }

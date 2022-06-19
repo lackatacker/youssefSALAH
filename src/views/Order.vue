@@ -53,14 +53,14 @@ export default {
     link:'',
     currency:process.env.VUE_APP_currency,
     htmlData:'',
-    tp:parseInt(this.$store.getters.totalPrice)
   }
   },
   components: {
     Breadc,
   },
   computed:{
-
+    tp()   
+    {return this.$store.getters.totalPrice}
   },
   methods: {
     redirect(){
@@ -74,10 +74,9 @@ export default {
   },
   created() {
     if (sessionStorage.length!=0) {
-      console.log('sessionStorage is:',sessionStorage.length)
       this.$store.state.cartItems = []
       for (var i = 0; i < sessionStorage.length; i++) {
-        this.$store.commit('addInCart', this.$store.state.items[i])
+        this.$store.commit('addInCartOnly', this.$store.state.items[i])
       }
     }
   auth.sendOrder(this.tp).then(console.log('tp   ',this.tp))
