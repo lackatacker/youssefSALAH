@@ -170,30 +170,16 @@ export default new Vuex.Store({
     addInCartOnly(state, n){
       return state.cartItems.push(n)
     },
-
-
     inCart(state, n) {
-      // if(sessionStorage.getItem(n.id)){
-      // //slicing and pushing to force re-render on total price since it isn't watching sessionStorage
-      // state.cartItems.splice(n.id, 1)
-      // state.cartItems.push(n)
-      // return sessionStorage.setItem(n.id,parseInt(sessionStorage.getItem(n.id))+1)
-      // }
-      // sessionStorage.setItem(n.id,1)
-      // return state.cartItems.push(n)
       const itemIndex = state.cartItems.findIndex(x => x.id === n.id);
-      // if product already exists in cart, just update the quantity
       if (state.cartItems[itemIndex]) {
         state.cartItems[itemIndex].quantity++;
         sessionStorage.setItem(n.id, state.cartItems[itemIndex].quantity); // set item quantity from cart
       } else {
-        // else save it to cart and add it to session storage
         state.cartItems.push(n);
         sessionStorage.setItem(n.id, 1);
       }
     },
-
-
     outCart(state, id) { // Cart Component
       const itemIndex = state.cartItems.findIndex(x => x.id === id)
       if (state.cartItems[itemIndex] && state.cartItems[itemIndex].quantity === 1) {
@@ -203,6 +189,12 @@ export default new Vuex.Store({
         state.cartItems[itemIndex].quantity--;
         sessionStorage.setItem(id, sessionStorage.getItem(id) -1)
       }
+    },
+    removeItem(state, id){
+      console.log('rmoving itm')
+      const itemIndex = state.cartItems.findIndex(x => x.id === id)
+      state.cartItems.splice(itemIndex, state.cartItems[itemIndex].quantity-1)
+      sessionStorage.removeItem(id);
     },
 
 

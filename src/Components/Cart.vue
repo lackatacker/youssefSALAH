@@ -18,9 +18,13 @@
             <div class="col6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <h4>{{ thing.title }}</h4>
               <h6>{{ thing.price }} {{currency}}</h6>
-              <!-- <h6>quantity: {{  getnumber(thing.id)}}</h6> -->
               <h6>quantity: {{ thing.quantity }}</h6>
-              <h6>total: {{  thing.quantity*thing.price}}</h6>
+              <h6>total: {{ thing.quantity*thing.price}}</h6>
+              <div class="input-group mb-3">
+                <button @click="massRemove(thing.id)" type="button" class="btn btn-danger">-</button>
+                <input v-model="numberToModify" type="number" class="form-control" value="1" min="1" max="99" />
+                <button @click="massAdd(thing.id)" type="button" class="btn btn-success">+</button>
+              </div>
             </div>
             <div class="col2 col-xl-2 col-lg-2 col-md-2 col-sm-2 pt-4">
               <span class="remove-btn" @click="removeThing(thing.id)">remove</span>
@@ -35,7 +39,7 @@
             <h4>Total</h4>
           </div>
           <div class="flex-column pr-3">
-            <h4>{{ cartPrice }}  {{currency}}</h4>
+            <h4>{{ cartPrice }} {{currency}}</h4>
           </div>
           <router-link to="/Order">
             <button class="btn btn-outline-secondary btn-lg btn-block">
@@ -61,6 +65,7 @@ export default {
       modalClass: 'modal off',
       savedCartItems: [],
       currency:process.env.VUE_APP_currency,
+      numberToModify:0
     }
   },
   computed:{
@@ -86,11 +91,24 @@ export default {
       }
     },
     removeThing(id){
-      this.$store.commit('outCart',id)
+      this.$store.commit('removeItem', id)
   },
       getnumber(id){
       return sessionStorage.getItem(id)
-    }},
+    },
+    massAdd(id) {
+      console.log("massADDing",id)
+      for (let i = 1; i < this.numberToModify; i++)
+        this.$store.commit('inCart', id)
+    },
+    massRemove(id) {
+      console.log('massremoving', id)
+      if(this.numberToModify<sessionStorage.getItem(id))
+      for (let i = 1; i < this.numberToModify; i++)
+        this.$store.commit('outCart', id)
+      else
+        this.$store.commit('removeItem', id)  
+    },
       async sendOrder(){
     axios({
         method:'post',
@@ -99,6 +117,7 @@ export default {
     }).then((resp)=>{console.log(resp)})
   },
   
+  }
 }
 </script>
 
