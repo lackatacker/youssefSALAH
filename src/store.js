@@ -126,18 +126,16 @@ export default new Vuex.Store({
   },
   // plugins: [createPersistedState()],
   getters: {
-    async priceMthod() {
-      console.log('Price method');
-    },
     itemsNumber(state){  // Cart Component
       return state.cartItems.length
     },
     totalPrice(state) { // Cart Component
       if (state.cartItems.length != 0){
         let a=0
-       state.cartItems.forEach(e=>{console.log(e.title,'is repeated ',parseInt(sessionStorage.getItem(e.id)),' times');a+=e.price*parseInt(sessionStorage.getItem(e.id))})
+       state.cartItems.forEach(e=>{console.log(e.title,' multiplied by ',sessionStorage.getItem(e.id),' = ',e.price*parseInt(sessionStorage.getItem(e.id)));a+=e.price*parseInt(sessionStorage.getItem(e.id))})
        return parseInt(a)
       }
+      return 0
     },
     infoLength(state) { // Info Component
       if(state.infoPage.length > 0) {
@@ -149,24 +147,33 @@ export default new Vuex.Store({
     },
 
   },
+
+
   mutations: {
-    addInCart(state, n){
+    addInCartOnly(state, n){
       return state.cartItems.push(n)
     },
+
+
     inCart(state, n) {
-      if(!sessionStorage.getItem(n.id)){
-      sessionStorage.setItem(n.id,1)
-      return state.cartItems.push(n)
-      }
-      sessionStorage.setItem(n.id,parseInt(sessionStorage.getItem(n.id))+1)
+      if(sessionStorage.getItem(n.id)){
+      //slicing and pushing to force re-render on total price since it isn't watching sessionStorage
       state.cartItems.splice(n.id, 1)
       state.cartItems.push(n)
+      return sessionStorage.setItem(n.id,parseInt(sessionStorage.getItem(n.id))+1)
+      }
+      sessionStorage.setItem(n.id,1)
+      return state.cartItems.push(n)
     },
-    outCart(state, n) { // Cart Component
-      console.log('-n: ' + JSON.stringify(n))
-      let index = state.cartItems.findIndex(x => x.id === n)
-      return state.cartItems.splice(index, 1)
+
+
+    outCart(state, id) { // Cart Component
+      let index = state.cartItems.findIndex(x => x.id === id)
+      state.cartItems.splice(index, 1)
+      sessionStorage.removeItem(id)
     },
+
+
     addtoInfo(state, n) { // Info Component
        return state.infoPage.push(n)
     },

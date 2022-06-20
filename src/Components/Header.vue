@@ -30,6 +30,7 @@
             <img class="pb-1" src="@/assets/cart.svg">
             <span class="mb-3" v-if="this.bagItemscount > 0">{{ bagItemscount }}</span>
         </div>
+        </p>
     </nav>
     <!--User Modal-->
     <div class="modal fade" id="userModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

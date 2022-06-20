@@ -30,7 +30,7 @@
 
         <hr v-if="this.cartContent.length !== 0">
         <div class="row justify-content-between" style="background:#7dcf85;padding:10px 10px 10px 10px"
-          v-if="this.cartPrice != undefined">
+          v-if="this.cartPrice != 0">
           <div class="flex-column pl-3">
             <h4>Total</h4>
           </div>
@@ -39,7 +39,8 @@
           </div>
           <router-link to="/Order">
             <button class="btn btn-outline-secondary btn-lg btn-block">
-              Confirm Order!</button>
+              Confirm Order!
+            </button>
           </router-link>
         </div>
 
@@ -64,6 +65,7 @@ export default {
   },
   computed:{
     cartContent(){
+      console.log(this.$store.state.cartItems.length)
       return this.$store.state.cartItems
     },
     cartPrice() {
@@ -85,7 +87,6 @@ export default {
     },
     removeThing(id){
       this.$store.commit('outCart',id)
-      sessionStorage.removeItem(id)
   },
       getnumber(id){
       return sessionStorage.getItem(id)
