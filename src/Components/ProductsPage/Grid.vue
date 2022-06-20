@@ -40,12 +40,12 @@
           <div class="card-selector">
             <div class="card-body p-5">
               <div class="search-title">
-                <h4>Catagories  +</h4>
+                <h4>Categories  +</h4>
                 <br>
-                <h6 @click="sortI('table')">Tables</h6>
-                <h6 @click="sortI('lamp')">Lamps</h6>
-                <h6 @click="sortI('chair')">Chairs</h6>
-                <h6 @click="sortI('sofa')">Sofas</h6>
+                <h6 @click="sortI('table')">Ingenico</h6>
+                <h6 @click="sortI('lamp')">Dejavoo</h6>
+                <h6 @click="sortI('chair')">Pax</h6>
+                <h6 @click="sortI('sofa')">Poynt</h6>
                 <br><br><br>
                 <h4 class="search-title">Filter by  +</h4>
                 <br>

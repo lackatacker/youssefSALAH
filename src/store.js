@@ -12,56 +12,56 @@ export default new Vuex.Store({
       {
         id:0,
         img: require('@/assets/t0.jpg'),
-        title: 'sofa 243',
+        title: 'Ingenico',
         price: 156,
         color: 'yellow',
         type: 'sofa'
       }, {
         id:1,
         img: require('@/assets/t1.jpg'),
-        title: 'lamp 54',
+        title: 'Dejavoo',
         price: 756,
         color: 'yellow',
         type: 'lamp'
       }, {
         id:2,
         img: require('@/assets/t2.jpg'),
-        title: 'fotal 34',
+        title: 'Pax',
         price: 362,
         color: 'yellow',
         type: 'chair'
       }, {
         id:3,
         img: require('@/assets/t3.jpg'),
-        title: 'fotal324',
+        title: 'Poynt',
         price: 505,
         color: 'red',
         type: 'chair'
       }, {
         id:4,
         img: require('@/assets/t4.jpeg'),
-        title: 'sofa-1',
+        title: 'Verifone',
         price: 243,
         color: 'white',
         type: 'sofa'
       }, {
         id:5,
         img: require('@/assets/t5.jpg'),
-        title: 'Fotal-2',
+        title: 'Ingenico',
         price: 44,
         color: 'white',
         type: 'chair'
       }, {
         id:6,
         img: require('@/assets/t6.jpg'),
-        title: 'Fotal-34',
+        title: 'Pax',
         price: 505,
         color: 'blue',
         type: 'chair'
       }, {
         id:7,
         img: require('@/assets/t7.jpg'),
-        title: 'foto-4364',
+        title: 'Dejavoo',
         price: 432,
         color: 'red',
         type: 'table'
@@ -69,7 +69,7 @@ export default new Vuex.Store({
       {
         id:8,
         img: require('@/assets/t8.jpg'),
-        title: 'foto-44',
+        title: 'Poynt',
         price: 390,
         color: 'white',
         type: 'table'
@@ -77,7 +77,7 @@ export default new Vuex.Store({
       {
         id:9,
         img: require('@/assets/t9.jpg'),
-        title: 'foto-34',
+        title: 'Verifone',
         price: 756,
         color: 'yellow',
         type: 'chair'
@@ -85,7 +85,7 @@ export default new Vuex.Store({
       {
         id:10,
         img: require('@/assets/t10.png'),
-        title: 'foto-23',
+        title: 'Dejavoo',
         price: 44,
         color: 'white',
         type: 'chair'
@@ -93,7 +93,7 @@ export default new Vuex.Store({
       {
         id:11,
         img: require('@/assets/t11.png'),
-        title: 'foto-4234',
+        title: 'Ingenico',
         price: 156,
         color: 'red',
         type: 'lamp'
@@ -101,7 +101,7 @@ export default new Vuex.Store({
       {
         id:12,
         img: require('@/assets/t12.png'),
-        title: 'foto-4234',
+        title: 'Poynt',
         price: 756,
         color: 'blue',
         type: 'lamp'
@@ -109,7 +109,7 @@ export default new Vuex.Store({
       {
         id:13,
         img: require('@/assets/t13.png'),
-        title: 'foto-4234',
+        title: 'Verifone',
         price: 756,
         color: 'white',
         type: 'chair'
@@ -117,7 +117,7 @@ export default new Vuex.Store({
       {
         id:14,
         img: require('@/assets/t14.png'),
-        title: 'table-32',
+        title: 'Ingenico',
         price: 756,
         color: 'white',
         type: 'table'

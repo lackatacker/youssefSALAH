@@ -30,10 +30,10 @@
           <div class="footer-widget">
             <div class="footer-title">Categories</div>
             <ul class="list-unstyled">
-              <router-link to="/products"><li>Tables</li></router-link>
-              <router-link to="/products"><li>Lamps</li></router-link>
-              <router-link to="/products"><li>Chairs</li></router-link>
-              <router-link to="/products"><li>Sofas</li></router-link>
+              <router-link to="/products"><li>Ingenico</li></router-link>
+              <router-link to="/products"><li>Dejavoo</li></router-link>
+              <router-link to="/products"><li>Pax</li></router-link>
+              <router-link to="/products"><li>Poynt</li></router-link>
             </ul>
           </div>
         </div>
