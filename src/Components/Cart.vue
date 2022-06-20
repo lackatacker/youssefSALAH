@@ -10,7 +10,6 @@
             Your cart is empty, try to Add stuff.
           </div>
         </transition>
-
         <transition-group name="fade">
           <div class="row" v-for="thing in cartContent" v-bind:key="thing.id">
             <div class="col4 col-xl-4 col-lg-4 col-md-4 col-sm-4">
@@ -19,8 +18,9 @@
             <div class="col6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <h4>{{ thing.title }}</h4>
               <h6>{{ thing.price }} {{currency}}</h6>
-              <h6>quantity: {{  getnumber(thing.id)}}</h6>
-              <h6>total: {{  getnumber(thing.id)*thing.price}}</h6>
+              <!-- <h6>quantity: {{  getnumber(thing.id)}}</h6> -->
+              <h6>quantity: {{ thing.quantity }}</h6>
+              <h6>total: {{  thing.quantity*thing.price}}</h6>
             </div>
             <div class="col2 col-xl-2 col-lg-2 col-md-2 col-sm-2 pt-4">
               <span class="remove-btn" @click="removeThing(thing.id)">remove</span>

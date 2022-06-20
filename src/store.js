@@ -15,56 +15,64 @@ export default new Vuex.Store({
         title: 'Ingenico',
         price: 156,
         color: 'yellow',
-        type: 'sofa'
+        type: 'sofa',
+        quantity: 1
       }, {
         id:1,
         img: require('@/assets/t1.jpg'),
         title: 'Dejavoo',
         price: 756,
         color: 'yellow',
-        type: 'lamp'
+        type: 'lamp',
+        quantity: 1
       }, {
         id:2,
         img: require('@/assets/t2.jpg'),
         title: 'Pax',
         price: 362,
         color: 'yellow',
-        type: 'chair'
+        type: 'chair',
+        quantity: 1
       }, {
         id:3,
         img: require('@/assets/t3.jpg'),
         title: 'Poynt',
         price: 505,
         color: 'red',
-        type: 'chair'
+        type: 'chair',
+        quantity: 1
       }, {
         id:4,
         img: require('@/assets/t4.jpeg'),
         title: 'Verifone',
         price: 243,
         color: 'white',
-        type: 'sofa'
+        type: 'sofa',
+        quantity: 1
       }, {
         id:5,
         img: require('@/assets/t5.jpg'),
         title: 'Ingenico',
         price: 44,
         color: 'white',
-        type: 'chair'
+        type: 'chair',
+        quantity: 1
       }, {
         id:6,
         img: require('@/assets/t6.jpg'),
         title: 'Pax',
         price: 505,
         color: 'blue',
-        type: 'chair'
+        type: 'chair',
+        quantity: 1
       }, {
         id:7,
         img: require('@/assets/t7.jpg'),
         title: 'Dejavoo',
         price: 432,
         color: 'red',
-        type: 'table'
+        type: 'table',
+        quantity: 1
       },
       {
         id:8,
@@ -72,7 +80,8 @@ export default new Vuex.Store({
         title: 'Poynt',
         price: 390,
         color: 'white',
-        type: 'table'
+        type: 'table',
+        quantity: 1
       },
       {
         id:9,
@@ -80,7 +89,8 @@ export default new Vuex.Store({
         title: 'Verifone',
         price: 756,
         color: 'yellow',
-        type: 'chair'
+        type: 'chair',
+        quantity: 1
       },
       {
         id:10,
@@ -88,7 +98,8 @@ export default new Vuex.Store({
         title: 'Dejavoo',
         price: 44,
         color: 'white',
-        type: 'chair'
+        type: 'chair',
+        quantity: 1
       },
       {
         id:11,
@@ -96,7 +107,8 @@ export default new Vuex.Store({
         title: 'Ingenico',
         price: 156,
         color: 'red',
-        type: 'lamp'
+        type: 'lamp',
+        quantity: 1
       },
       {
         id:12,
@@ -104,7 +116,8 @@ export default new Vuex.Store({
         title: 'Poynt',
         price: 756,
         color: 'blue',
-        type: 'lamp'
+        type: 'lamp',
+        quantity: 1
       },
       {
         id:13,
@@ -112,7 +125,8 @@ export default new Vuex.Store({
         title: 'Verifone',
         price: 756,
         color: 'white',
-        type: 'chair'
+        type: 'chair',
+        quantity: 1
       },
       {
         id:14,
@@ -120,7 +134,8 @@ export default new Vuex.Store({
         title: 'Ingenico',
         price: 756,
         color: 'white',
-        type: 'table'
+        type: 'table',
+        quantity: 1
       }
     ]
   },
@@ -132,7 +147,9 @@ export default new Vuex.Store({
     totalPrice(state) { // Cart Component
       if (state.cartItems.length != 0){
         let a=0
-       state.cartItems.forEach(e=>{console.log(e.title,' multiplied by ',sessionStorage.getItem(e.id),' = ',e.price*parseInt(sessionStorage.getItem(e.id)));a+=e.price*parseInt(sessionStorage.getItem(e.id))})
+       state.cartItems.forEach(e=>{
+        a += e.price*e.quantity;
+      });
        return parseInt(a)
       }
       return 0
@@ -156,21 +173,36 @@ export default new Vuex.Store({
 
 
     inCart(state, n) {
-      if(sessionStorage.getItem(n.id)){
-      //slicing and pushing to force re-render on total price since it isn't watching sessionStorage
-      state.cartItems.splice(n.id, 1)
-      state.cartItems.push(n)
-      return sessionStorage.setItem(n.id,parseInt(sessionStorage.getItem(n.id))+1)
+      // if(sessionStorage.getItem(n.id)){
+      // //slicing and pushing to force re-render on total price since it isn't watching sessionStorage
+      // state.cartItems.splice(n.id, 1)
+      // state.cartItems.push(n)
+      // return sessionStorage.setItem(n.id,parseInt(sessionStorage.getItem(n.id))+1)
+      // }
+      // sessionStorage.setItem(n.id,1)
+      // return state.cartItems.push(n)
+      const itemIndex = state.cartItems.findIndex(x => x.id === n.id);
+      // if product already exists in cart, just update the quantity
+      if (state.cartItems[itemIndex]) {
+        state.cartItems[itemIndex].quantity++;
+        sessionStorage.setItem(n.id, state.cartItems[itemIndex].quantity); // set item quantity from cart
+      } else {
+        // else save it to cart and add it to session storage
+        state.cartItems.push(n);
+        sessionStorage.setItem(n.id, 1);
       }
-      sessionStorage.setItem(n.id,1)
-      return state.cartItems.push(n)
     },
 
 
     outCart(state, id) { // Cart Component
-      let index = state.cartItems.findIndex(x => x.id === id)
-      state.cartItems.splice(index, 1)
-      sessionStorage.removeItem(id)
+      const itemIndex = state.cartItems.findIndex(x => x.id === id)
+      if (state.cartItems[itemIndex] && state.cartItems[itemIndex].quantity === 1) {
+        state.cartItems.splice(itemIndex, 1)
+        sessionStorage.removeItem(id);
+      } else {
+        state.cartItems[itemIndex].quantity--;
+        sessionStorage.setItem(id, sessionStorage.getItem(id) -1)
+      }
     },
 
 
