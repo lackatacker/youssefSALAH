@@ -65,7 +65,6 @@ export default {
   },
   computed:{
     cartContent(){
-      console.log(this.$store.state.cartItems.length)
       return this.$store.state.cartItems
     },
     cartPrice() {
