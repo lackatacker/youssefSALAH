@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Vuex, { Store } from 'vuex';
+import Vuex from 'vuex';
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
 var ls = new SecureLS({ isCompression: false });
@@ -189,12 +189,12 @@ export default new Vuex.Store({
     },
     massAdd(state, params){
       const itemIndex = state.cartItems.findIndex(x => x.id === params.id);
-      state.cartItems[itemIndex].quantity+=parseInt(params.numberToAdd)
+      state.cartItems[itemIndex].quantity+=parseInt(params.numberToModify)
     },
     massRemove(state, params){
       const itemIndex = state.cartItems.findIndex(x => x.id === params.id);
-      if(state.cartItems[itemIndex].quantity > params.numberToRemove)
-      state.cartItems[itemIndex].quantity-=params.numberToRemove
+      if(state.cartItems[itemIndex].quantity > params.numberToModify)
+      state.cartItems[itemIndex].quantity-=params.numberToModify
       else
       state.cartItems.splice(itemIndex, 1)
     }
