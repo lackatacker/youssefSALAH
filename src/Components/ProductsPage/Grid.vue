@@ -18,10 +18,10 @@
           <div class="dropdown">
             <button class="btn btn-light dropdown-toggle d-block d-lg-none d-xl-none" role="button" id="MenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATAGORIES</button>
             <div class="dropdown-menu" aria-labelledby="MenuLink">
-              <a class="dropdown-item" @click="sortI('table')">Tables</a>
-              <a class="dropdown-item" @click="sortI('lamp')">Lamps</a>
-              <a class="dropdown-item" @click="sortI('chair')">Chairs</a>
-              <a class="dropdown-item" @click="sortI('sofa')">Sofas</a>
+              <a class="dropdown-item" @click="sortI('Ingenico')">Ingenico</a>
+              <a class="dropdown-item" @click="sortI('Dejavoo')">Dejavoo</a>
+              <a class="dropdown-item" @click="sortI('Pax')">Pax</a>
+              <a class="dropdown-item" @click="sortI('Poynt')">Poynt</a>
               <div class="dropdown-divider"></div>
               <div class="pl-3">
                 <span class="circle" style="background-color:yellow" @click="sortI('yellow')" />
@@ -42,10 +42,10 @@
               <div class="search-title">
                 <h4>Categories  +</h4>
                 <br>
-                <h6 @click="sortI('table')">Ingenico</h6>
-                <h6 @click="sortI('lamp')">Dejavoo</h6>
-                <h6 @click="sortI('chair')">Pax</h6>
-                <h6 @click="sortI('sofa')">Poynt</h6>
+                <h6 @click="sortI('Ingenico')">Ingenico</h6>
+                <h6 @click="sortI('Dejavoo')">Dejavoo</h6>
+                <h6 @click="sortI('Pax')">Pax</h6>
+                <h6 @click="sortI('Poynt')">Poynt</h6>
                 <br><br><br>
                 <h4 class="search-title">Filter by  +</h4>
                 <br>
@@ -129,7 +129,7 @@ export default {
        return this.sortButton = 'TRENDING'
     },
     sortI(name){
-      this.cards = this.it.filter((e) => e.type.match(name) || e.color.match(name))
+      this.cards = this.it.filter((e) => e.title.match(name))
     },
     reSet() {
       return this.cards = this.it
