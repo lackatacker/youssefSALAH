@@ -31,6 +31,7 @@ export default {
   methods: {
     addtoCart(it) {
      this.$store.commit('inCart', it)
+     console.log('it.quantity in card: ',it.quantity)
     },
     sendInfo(it) {
      this.$store.commit('addtoInfo', it)

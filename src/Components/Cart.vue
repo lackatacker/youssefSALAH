@@ -11,7 +11,7 @@
           </div>
         </transition>
         <transition-group name="fade">
-          <div class="row" v-for="thing in cartContent" v-bind:key="thing.id">
+          <div class="row" v-for="(thing,index) in cartContent" v-bind:key="index">
             <div class="col4 col-xl-4 col-lg-4 col-md-4 col-sm-4">
               <img :src="thing.img" style="width: 90px;">
             </div>
@@ -21,9 +21,9 @@
               <h6>quantity: {{ thing.quantity }}</h6>
               <h6>total: {{ thing.quantity*thing.price}}</h6>
               <div class="input-group mb-3">
-                <button @click="massRemove(thing.id)" type="button" class="btn btn-danger">-</button>
-                <input v-model="numberToModify" type="number" class="form-control" value="1" min="1" max="99" />
-                <button @click="massAdd(thing.id)" type="button" class="btn btn-success">+</button>
+                <button @click="removeQuantity(thing.id)" type="button" class="btn btn-danger">-</button>
+                <input @input="onInput" type="number" class="form-control" value="1" min="1" max="99" :id="thing.id"/>
+                <button @click="addQuantity(thing.id)" type="button" class="btn btn-success">+</button>
               </div>
             </div>
             <div class="col2 col-xl-2 col-lg-2 col-md-2 col-sm-2 pt-4">
@@ -65,12 +65,10 @@ export default {
       modalClass: 'modal off',
       savedCartItems: [],
       currency:process.env.VUE_APP_currency,
-      numberToModify:0
     }
   },
   computed:{
     cartContent(){
-      console.log(this.$store.state.cartItems.length)
       return this.$store.state.cartItems
     },
     cartPrice() {
@@ -81,6 +79,9 @@ export default {
     }
   },
   methods: {
+    onInput(e){
+      this.input=e.target.value
+    },
     cartON() {
       if(this.cClass === 'cart on'){
         this.cClass = 'cart'
@@ -91,23 +92,19 @@ export default {
       }
     },
     removeThing(id){
+      console.log('removing ',id)
       this.$store.commit('removeItem', id)
   },
       getnumber(id){
       return sessionStorage.getItem(id)
     },
-    massAdd(id) {
-      console.log("massADDing",id)
-      for (let i = 1; i < this.numberToModify; i++)
-        this.$store.commit('inCart', id)
+    addQuantity(id) {
+      var numberToAdd = document.getElementById(id).value
+      this.$store.commit('massAdd', {id, numberToAdd})
     },
-    massRemove(id) {
-      console.log('massremoving', id)
-      if(this.numberToModify<sessionStorage.getItem(id))
-      for (let i = 1; i < this.numberToModify; i++)
-        this.$store.commit('outCart', id)
-      else
-        this.$store.commit('removeItem', id)  
+    removeQuantity(id) {
+      var numberToRemove = document.getElementById(id).value
+      this.$store.commit('massRemove', {id, numberToRemove})
     },
       async sendOrder(){
     axios({
