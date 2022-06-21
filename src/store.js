@@ -197,6 +197,9 @@ export default new Vuex.Store({
       state.cartItems[itemIndex].quantity-=params.numberToModify
       else
       state.cartItems.splice(itemIndex, 1)
+    },
+    clearCart(state) {
+      state.cartItems = [];
     }
   },
   plugins: [

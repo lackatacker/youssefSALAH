@@ -35,7 +35,9 @@
             </div>
           </div>
         </transition-group>
-
+          <button class="btn btn-info" @click="clearCart" v-if="this.cartContent.length != 0">
+            clear cart
+          </button>
         <hr v-if="this.cartContent.length !== 0">
         <div class="row justify-content-between" style="background:#7dcf85;padding:10px 10px 10px 10px"
           v-if="this.cartPrice != 0">
@@ -70,7 +72,8 @@ export default {
       savedCartItems: [],
       currency: process.env.VUE_APP_currency,
       edit:null,
-      numberToModify:0
+      numberToModify:0,
+      cartClear: false
     }
   },
   computed: {
@@ -87,6 +90,9 @@ export default {
   methods: {
     onInput(e) {
       this.input = e.target.value
+    },
+    clearCart() {
+      this.$store.commit('clearCart')
     },
     cartON() {
       if (this.cClass === 'cart on') {
