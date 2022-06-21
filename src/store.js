@@ -16,7 +16,6 @@ export default new Vuex.Store({
         title: 'Ingenico',
         price: 156,
         color: 'yellow',
-        type: 'sofa',
         quantity: 1
       }, {
         id:1,
@@ -24,7 +23,6 @@ export default new Vuex.Store({
         title: 'Dejavoo',
         price: 756,
         color: 'yellow',
-        type: 'lamp',
         quantity: 1
       }, {
         id:2,
@@ -32,7 +30,6 @@ export default new Vuex.Store({
         title: 'Pax',
         price: 362,
         color: 'yellow',
-        type: 'chair',
         quantity: 1
       }, {
         id:3,
@@ -40,7 +37,6 @@ export default new Vuex.Store({
         title: 'Poynt',
         price: 505,
         color: 'red',
-        type: 'chair',
         quantity: 1
       }, {
         id:4,
@@ -48,7 +44,6 @@ export default new Vuex.Store({
         title: 'Verifone',
         price: 243,
         color: 'white',
-        type: 'sofa',
         quantity: 1
       }, {
         id:5,
@@ -56,7 +51,6 @@ export default new Vuex.Store({
         title: 'Ingenico',
         price: 44,
         color: 'white',
-        type: 'chair',
         quantity: 1
       }, {
         id:6,
@@ -64,7 +58,6 @@ export default new Vuex.Store({
         title: 'Pax',
         price: 505,
         color: 'blue',
-        type: 'chair',
         quantity: 1
       }, {
         id:7,
@@ -72,7 +65,6 @@ export default new Vuex.Store({
         title: 'Dejavoo',
         price: 432,
         color: 'red',
-        type: 'table',
         quantity: 1
       },
       {
@@ -81,7 +73,6 @@ export default new Vuex.Store({
         title: 'Poynt',
         price: 390,
         color: 'white',
-        type: 'table',
         quantity: 1
       },
       {
@@ -90,7 +81,6 @@ export default new Vuex.Store({
         title: 'Verifone',
         price: 756,
         color: 'yellow',
-        type: 'chair',
         quantity: 1
       },
       {
@@ -99,7 +89,6 @@ export default new Vuex.Store({
         title: 'Dejavoo',
         price: 44,
         color: 'white',
-        type: 'chair',
         quantity: 1
       },
       {
@@ -108,7 +97,6 @@ export default new Vuex.Store({
         title: 'Ingenico',
         price: 156,
         color: 'red',
-        type: 'lamp',
         quantity: 1
       },
       {
@@ -117,7 +105,6 @@ export default new Vuex.Store({
         title: 'Poynt',
         price: 756,
         color: 'blue',
-        type: 'lamp',
         quantity: 1
       },
       {
@@ -126,7 +113,6 @@ export default new Vuex.Store({
         title: 'Verifone',
         price: 756,
         color: 'white',
-        type: 'chair',
         quantity: 1
       },
       {
@@ -135,7 +121,6 @@ export default new Vuex.Store({
         title: 'Ingenico',
         price: 756,
         color: 'white',
-        type: 'table',
         quantity: 1
       }
     ]

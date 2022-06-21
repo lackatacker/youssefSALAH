@@ -35,7 +35,7 @@
             </div>
           </div>
         </transition-group>
-          <button class="btn btn-info" @click="clearCart" v-if="this.cartContent.length != 0">
+          <button class="btn btn-info mt-5 ml-2" @click="clearCart" v-if="this.cartContent.length != 0">
             clear cart
           </button>
         <hr v-if="this.cartContent.length !== 0">
