@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import createPersistedState from 'vuex-persistedstate';
-
+import createPersistedState from "vuex-persistedstate";
+import SecureLS from "secure-ls";
+var ls = new SecureLS({ isCompression: false });
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -146,7 +147,7 @@ export default new Vuex.Store({
     },
     totalPrice(state) { // Cart Component
       if (state.cartItems.length != 0){
-        let a=0
+        var a=0
        state.cartItems.forEach(e=>{
         a += e.price*e.quantity;
       });
@@ -164,50 +165,47 @@ export default new Vuex.Store({
     },
 
   },
-
-
   mutations: {
-    addInCartOnly(state, n){
-      return state.cartItems.push(n)
+      inCart(state, n) {
+        const itemIndex = state.cartItems.findIndex(x => x.id === n.id);
+        console.log('itmindex is  ',itemIndex)
+        if (itemIndex === -1){
+          n.quantity=1
+          state.cartItems.push(n)
+        }
+        else
+          state.cartItems[itemIndex].quantity++
     },
-
-
-    inCart(state, n) {
-      // if(sessionStorage.getItem(n.id)){
-      // //slicing and pushing to force re-render on total price since it isn't watching sessionStorage
-      // state.cartItems.splice(n.id, 1)
-      // state.cartItems.push(n)
-      // return sessionStorage.setItem(n.id,parseInt(sessionStorage.getItem(n.id))+1)
-      // }
-      // sessionStorage.setItem(n.id,1)
-      // return state.cartItems.push(n)
-      const itemIndex = state.cartItems.findIndex(x => x.id === n.id);
-      // if product already exists in cart, just update the quantity
-      if (state.cartItems[itemIndex]) {
-        state.cartItems[itemIndex].quantity++;
-        sessionStorage.setItem(n.id, state.cartItems[itemIndex].quantity); // set item quantity from cart
-      } else {
-        // else save it to cart and add it to session storage
-        state.cartItems.push(n);
-        sessionStorage.setItem(n.id, 1);
-      }
-    },
-
-
     outCart(state, id) { // Cart Component
-      const itemIndex = state.cartItems.findIndex(x => x.id === id)
-      if (state.cartItems[itemIndex] && state.cartItems[itemIndex].quantity === 1) {
-        state.cartItems.splice(itemIndex, 1)
-        sessionStorage.removeItem(id);
-      } else {
-        state.cartItems[itemIndex].quantity--;
-        sessionStorage.setItem(id, sessionStorage.getItem(id) -1)
-      }
+      const itemIndex = state.cartItems.findIndex(x => x.id === id);
+      state.cartItems[itemIndex].quantity--;
     },
-
-
+    removeItem(state, id){
+      const itemIndex = state.cartItems.findIndex(x => x.id === id);
+      state.cartItems.splice(itemIndex, 1)
+    },
     addtoInfo(state, n) { // Info Component
        return state.infoPage.push(n)
     },
+    massAdd(state, params){
+      const itemIndex = state.cartItems.findIndex(x => x.id === params.id);
+      state.cartItems[itemIndex].quantity+=parseInt(params.numberToModify)
+    },
+    massRemove(state, params){
+      const itemIndex = state.cartItems.findIndex(x => x.id === params.id);
+      if(state.cartItems[itemIndex].quantity > params.numberToModify)
+      state.cartItems[itemIndex].quantity-=params.numberToModify
+      else
+      state.cartItems.splice(itemIndex, 1)
+    }
   },
+  plugins: [
+    createPersistedState({
+      storage: {
+        getItem: (key) => ls.get(key),
+        setItem: (key, value) => ls.set(key, value),
+        removeItem: (key) => ls.remove(key),
+      },
+    }),
+  ],
 })

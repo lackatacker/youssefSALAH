@@ -73,12 +73,6 @@ export default {
 
   },
   created() {
-    if (sessionStorage.length!=0) {
-      this.$store.state.cartItems = []
-      for (var i = 0; i < sessionStorage.length; i++) {
-        this.$store.commit('addInCartOnly', this.$store.state.items[i])
-      }
-    }
   auth.sendOrder(this.tp).then(console.log('tp   ',this.tp))
   getPayment.getLink().then(res =>this.link=res.data)
   console.log(this.tp)

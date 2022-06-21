@@ -14,12 +14,6 @@ export default {
     Breadc, Grid
   },
   created() {
-    if (sessionStorage.length!=0) {
-      this.$store.state.cartItems = []
-      for (var i = 0; i < sessionStorage.length; i++) {
-        this.$store.commit('addInCartOnly', this.$store.state.items[i])
-      }
-    }
   }
 }
 </script>
