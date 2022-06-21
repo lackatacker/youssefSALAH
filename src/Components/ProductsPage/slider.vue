@@ -1,7 +1,7 @@
 <template>
     <div @click="getValue('sli')">
       <vue-slider ref="sli" v-model="value" v-bind="options"></vue-slider>
-      <span>${{ value.join(' ~ $') }}</span>
+      <span> {{ value.join(' DH~ ') }} DH</span>
     </div>
 </template>
 
@@ -28,8 +28,8 @@ export default {
       show: true,
       useKeyboard: true,
       tooltip: "hover",
-      formatter: (v) => `$${v}`,
-      mergeFormatter: (v1, v2) => `$${v1} ~ $${v2}`,
+      formatter: (v) => `{v} DH`,
+      mergeFormatter: (v1, v2) => `{v1} DH~ {v2}`,
       processStyle: {
         "backgroundColor": "#999"
       }}
