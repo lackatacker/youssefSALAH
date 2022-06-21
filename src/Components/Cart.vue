@@ -27,7 +27,7 @@
                 <button @click="addQuantity()" type="button" class="btn btn-success ml-1">+</button>
                 <button  @click="edit=null" type="button" class="btn btn-danger ml-2">x</button>
                 </div>
-                <button v-else @click="edit=thing.id;numberToModify=1" type="button" class="btn btn-warning ml-2">edit order</button>
+                <button v-else @click="edit=thing.id;numberToModify=1" type="button" class="btn btn-warning ml-2">edit quantity</button>
               </div>
             </div>
             <div class="col2 col-xl-2 col-lg-2 col-md-2 col-sm-2 pt-4">
@@ -123,7 +123,6 @@ export default {
         data: this.authBody
       }).then((resp) => { console.log(resp) })
     },
-
   }
 }
 </script>

@@ -75,7 +75,6 @@ export default {
   created() {
   auth.sendOrder(this.tp).then(console.log('tp   ',this.tp))
   getPayment.getLink().then(res =>this.link=res.data)
-  console.log(this.tp)
   }
 }
 
