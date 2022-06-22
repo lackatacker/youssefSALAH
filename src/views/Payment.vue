@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="flex-container direction-column" style="">
-        <form novalidate="">
+        <form action="http://localhost:8080/ss-ecom-merchant-kit/api/threeDsSimulator/purchaseAuthentication">
           <div style="height: 470.875px;">
             <div>
               <div style="opacity: 1;">
@@ -80,7 +80,7 @@
                                     <input class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
                                       autocomplete="cc-number" autocorrect="off" spellcheck="false" id="cardNumber"
                                       name="cardNumber" type="text" inputmode="numeric" aria-label="Card number"
-                                      placeholder="1234 1234 1234 1234"  value="">
+                                      placeholder="1234 1234 1234 1234"  value="7654310499999999">
                                   </span>
                                 </div>
                                 <div class="FormFieldInput-Icons" style="opacity: 1;">
@@ -152,12 +152,25 @@
                                 <div class="CheckoutInputContainer">
                                   <span class="InputContainer" data-max="">
                                     <input class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
+                                      autocomplete="cc-exp" autocorrect="off" spellcheck="false" id="expiryMonth"
+                                      name="expiryMonth" type="text" inputmode="numeric" aria-label="Expiration"
+                                      placeholder="MM"  value="">
+                                  </span>
+                                </div>
+                                <div>
+                                  <input id="trxAmount" type="hidden" :value="this.$store.getters.totalPrice" name="trxAmount" value="1234"/>
+                                  <input id="trxReference" type="hidden" name="trxReference" value="123456789"/>
+                                </div>
+                                                                <div class="CheckoutInputContainer">
+                                  <span class="InputContainer" data-max="">
+                                    <input class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
                                       autocomplete="cc-exp" autocorrect="off" spellcheck="false" id="cardExpiry"
-                                      name="cardExpiry" type="text" inputmode="numeric" aria-label="Expiration"
-                                      placeholder="MM / YY"  value="">
+                                      name="expiryYear" type="text" inputmode="numeric" aria-label="Expiration"
+                                      placeholder="YY"  value="">
                                   </span>
                                 </div>
                               </div>
+                              
                             </div>
                             <div
                               class="FormFieldGroup-child FormFieldGroup-child--width-6 FormFieldGroup-childRight FormFieldGroup-childBottom">
@@ -165,8 +178,8 @@
                                 <div class="CheckoutInputContainer">
                                   <span class="InputContainer" data-max="">
                                     <input class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
-                                      autocomplete="cc-csc" autocorrect="off" spellcheck="false" id="cardCvc"
-                                      name="cardCvc" type="text" inputmode="numeric" aria-label="CVC" placeholder="CVC"
+                                      autocomplete="cc-csc" autocorrect="off" spellcheck="false" id="cvv"
+                                      name="cvv" type="text" inputmode="numeric" aria-label="CVC" placeholder="CVC"
                                        value="">
                                   </span>
                                 </div>
@@ -288,7 +301,7 @@
                 </div>
                 <div class="SubmitButton-TextContainer">
                   <span
-                    class="SubmitButton-Text SubmitButton-Text--current Text Text-color--default Text-fontWeight--500">
+                    class="SubmitButton-Text Text-color--default Text-fontWeight--500">
                     Pay</span>
                   <span
                     class="SubmitButton-Text SubmitButton-Text--pre Text Text-color--default Text-fontWeight--500"
