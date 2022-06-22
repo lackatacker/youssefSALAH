@@ -153,7 +153,6 @@ export default new Vuex.Store({
   mutations: {
       inCart(state, n) {
         const itemIndex = state.cartItems.findIndex(x => x.id === n.id);
-        console.log('itmindex is  ',itemIndex)
         if (itemIndex === -1){
           n.quantity=1
           state.cartItems.push(n)
